@@ -12,7 +12,7 @@ export default function LoginPage(){
     const [name, setName] = useState({value: "", errorLabel: ""})
 
     return (
-        <div className="max-w-4xl p-4 rounded-lg shadow-md bg-slate-50">
+        <>
             <h1 className="text-2xl font-bold text-center mb-5">Register</h1>
             <div className="mb-3">
                 <label>Name*</label>
@@ -76,6 +76,6 @@ export default function LoginPage(){
             </div>
             <Button className="mt-5 w-full mb-8">Sign Up</Button>
             <div className="text-xs text-center">Already have an Account? <Link className="font-semibold text-blue-500 hover:underline" href={'/login'}>Sign In</Link></div>
-        </div>
+        </>
     )
 }

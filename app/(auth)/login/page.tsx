@@ -11,7 +11,7 @@ export default function LoginPage(){
     const [password, setPassword] = useState({value: "", errorLabel: ""})
 
     return (
-        <div className="max-w-4xl p-4 rounded-lg shadow-md bg-slate-50">
+        <>
             <h1 className="text-2xl font-bold text-center mb-5">Login</h1>
             <div className="mb-3">
                 <InputLabel 
@@ -46,6 +46,6 @@ export default function LoginPage(){
             </div>
             <Button className="mt-5 w-full mb-8">Login</Button>
             <div className="text-xs text-center">Don't have an Account? <Link className="font-semibold text-blue-500 hover:underline" href={'/register'}>Sign Up</Link></div>
-        </div>
+        </>
     )
 }

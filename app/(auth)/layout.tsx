@@ -5,7 +5,9 @@ export default function Layout({
 }){
     return(
         <div className="w-screen h-screen flex items-center justify-center">
-            {children}
+            <div className="w-full max-w-md p-4 rounded-lg shadow-md bg-slate-50">
+                {children}
+            </div>
         </div>
     )
 }
