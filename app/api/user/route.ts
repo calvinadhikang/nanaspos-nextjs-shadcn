@@ -12,11 +12,11 @@ export async function POST(request: NextRequest){
     const {name, username, password} = await request.json();
     const db = await DB();
 
-    const duplicate = await checkDuplicateUser({name, username});
+    const duplicate = await checkDuplicateUser(username);
     if (duplicate) {
         return NextResponse.json({
             error: 'true',
-            message: 'Name and Username has been used'
+            message: 'Username has been used'
         })
     }
 
@@ -35,9 +35,9 @@ export async function POST(request: NextRequest){
     }
 }
 
-async function checkDuplicateUser ({name, username}: {name: string, username: string}) : Promise<Boolean> {
+async function checkDuplicateUser (username: string) : Promise<Boolean> {
     const db = await DB();
-    const [rows, field] = await db.execute('SELECT * FROM USER WHERE NAME = ? AND USERNAME = ?', [name, username])
+    const [rows, field] = await db.execute('SELECT * FROM USER WHERE USERNAME = ?', [username])
     if (rows.length > 0) {
         return true
     }else{

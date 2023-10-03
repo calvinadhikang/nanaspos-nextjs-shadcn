@@ -14,6 +14,15 @@ export default function LoginPage(){
     const { toast } = useToast()
 
     const register = async () => {
+        if (username.value == "" || password.value == "" || name.value == "") {
+            toast({
+                title: "Uh oh! Inputs musn't be empty.",
+                description: "Make sure to fill out all the inputs.",
+                variant: "destructive",
+            })
+            return
+        }
+
         const response = await fetch('http://localhost:3000/api/user', {
             method: 'POST',
             body: JSON.stringify({
@@ -30,9 +39,11 @@ export default function LoginPage(){
             })
         }else{
             toast({
-                title: "Register Failed",
-                description: message
+                title: "Register Failed!",
+                description: message,
+                variant: "destructive"
             })
+            setUsername({value: "", errorLabel: message})
         }
     }
 
@@ -100,7 +111,7 @@ export default function LoginPage(){
                 <label className="text-xs text-red-500">{password.errorLabel}</label>
             </div>
             <Button className="mt-5 w-full mb-8" onClick={register}>Sign Up</Button>
-            <div className="text-xs text-center">Already have an Account? <Link className="font-semibold text-blue-500 hover:underline" href={'/login'}>Sign In</Link></div>
+            <div className="text-xs text-center">Already have an Account? <Link className="font-semibold text-secondary-foreground hover:underline" href={'/login'}>Sign In</Link></div>
         </>
     )
 }
